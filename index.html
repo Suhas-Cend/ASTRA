@@ -263,6 +263,51 @@
       text-transform: uppercase;
     }
 
+        /* ─── PAGINATION ─────────────────────────────────────────────────── */
+    #pagination {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 3rem;
+      padding-bottom: 1rem;
+    }
+    .pg-btn {
+      min-width: 2.2rem;
+      height: 2.2rem;
+      padding: 0 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .pg-btn:hover:not(:disabled) {
+      border-color: var(--gold-dim);
+      color: var(--text);
+    }
+    .pg-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #000;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .pg-btn:disabled { opacity: 0.3; pointer-events: none; }
+    .pg-dots {
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 0 0.2rem;
+      user-select: none;
+    }
+
     /* ─── PRODUCT DETAIL PAGE ────────────────────────────────────────── */
     #product-page {
       padding: 2.5rem 1rem 4rem;
@@ -795,36 +840,116 @@
          name    → product name (shown on card + detail page)
          summary → long product description for detail page
     ════════════════════════════════════════════════════════ */
-    const products = [
-      {
-        id: 0,
-        image:   "https://placehold.co/600x600/1a1a1a/c9a84c?text=Product+1", // ★ example 5
-        name:    "EXAMPLE 9",    // ★ example 9
-        summary: "EXAMPLE 13 – Price and details"  // ★ example 13
-      },
-      {
-        id: 1,
-        image:   "https://placehold.co/600x600/1a1a1a/c9a84c?text=Product+2", // ★ example 6
-        name:    "EXAMPLE 10",   // ★ example 10
-        summary: "EXAMPLE 14 – Price and details"  // ★ example 14
-      },
-      {
-        id: 2,
-        image:   "https://placehold.co/600x600/1a1a1a/c9a84c?text=Product+3", // ★ example 7
-        name:    "EXAMPLE 11",   // ★ example 11
-        summary: "EXAMPLE 15 – Price and details"  // ★ example 15
-      },
-      {
-        id: 3,
-        image:   "https://placehold.co/600x600/1a1a1a/c9a84c?text=Product+4", // ★ example 8
-        name:    "EXAMPLE 12",   // ★ example 12
-        summary: "EXAMPLE 16 – Price and details"  // ★ example 16
-      }
-    ];
+        const products = [
+      { id:0,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P1",   name:"EXAMPLE P1",   summary:"EXAMPLE P1 – Price and description" },
+      { id:1,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P2",   name:"EXAMPLE P2",   summary:"EXAMPLE P2 – Price and description." },
+      { id:2,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P3",   name:"EXAMPLE P3",   summary:"EXAMPLE P3 – Price and description." },
+      { id:3,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P4",   name:"EXAMPLE P4",   summary:"EXAMPLE P4 – Price and description." },
+      { id:4,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P5",   name:"EXAMPLE P5",   summary:"EXAMPLE P5 – Price and description." },
+      { id:5,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P6",   name:"EXAMPLE P6",   summary:"EXAMPLE P6 – Price and description." },
+      { id:6,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P7",   name:"EXAMPLE P7",   summary:"EXAMPLE P7 – Price and description." },
+      { id:7,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P8",   name:"EXAMPLE P8",   summary:"EXAMPLE P8 – Price and description." },
+      { id:8,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P9",   name:"EXAMPLE P9",   summary:"EXAMPLE P9 – Price and description." },
+      { id:9,  image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P10",  name:"EXAMPLE P10",  summary:"EXAMPLE P10 – Price and description." },
+      { id:10, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P11",  name:"EXAMPLE P11",  summary:"EXAMPLE P11 – Price and description." },
+      { id:11, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P12",  name:"EXAMPLE P12",  summary:"EXAMPLE P12 – Price and description." },
+      { id:12, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P13",  name:"EXAMPLE P13",  summary:"EXAMPLE P13 – Price and description." },
+      { id:13, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P14",  name:"EXAMPLE P14",  summary:"EXAMPLE P14 – Price and description." },
+      { id:14, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P15",  name:"EXAMPLE P15",  summary:"EXAMPLE P15 – Price and description." },
+      { id:15, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P16",  name:"EXAMPLE P16",  summary:"EXAMPLE P16 – Price and description." },
+      { id:16, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P17",  name:"EXAMPLE P17",  summary:"EXAMPLE P17 – Price and description." },
+      { id:17, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P18",  name:"EXAMPLE P18",  summary:"EXAMPLE P18 – Price and description." },
+      { id:18, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P19",  name:"EXAMPLE P19",  summary:"EXAMPLE P19 – deez nuts." },
+      { id:19, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P20",  name:"EXAMPLE P20",  summary:"EXAMPLE P20 – Price and description." },
+      { id:20, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P21",  name:"EXAMPLE P21",  summary:"EXAMPLE P21 – Price and description." },
+      { id:21, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P22",  name:"EXAMPLE P22",  summary:"EXAMPLE P22 – Price and description." },
+      { id:22, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P23",  name:"EXAMPLE P23",  summary:"EXAMPLE P23 – Price and description." },
+      { id:23, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P24",  name:"EXAMPLE P24",  summary:"EXAMPLE P24 – Price and description." },
+      { id:24, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P25",  name:"EXAMPLE P25",  summary:"EXAMPLE P25 – Price and description." },
+      { id:25, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P26",  name:"EXAMPLE P26",  summary:"EXAMPLE P26 – Price and description." },
+      { id:26, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P27",  name:"EXAMPLE P27",  summary:"EXAMPLE P27 – Price and description." },
+      { id:27, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P28",  name:"EXAMPLE P28",  summary:"EXAMPLE P28 – Price and description." },
+      { id:28, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P29",  name:"EXAMPLE P29",  summary:"EXAMPLE P29 – Price and description." },
+      { id:29, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P30",  name:"EXAMPLE P30",  summary:"EXAMPLE P30 – Price and description." },
+      { id:30, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P31",  name:"EXAMPLE P31",  summary:"EXAMPLE P31 – Price and description." },
+      { id:31, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P32",  name:"EXAMPLE P32",  summary:"EXAMPLE P32 – Price and description." },
+      { id:32, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P33",  name:"EXAMPLE P33",  summary:"EXAMPLE P33 – Price and description." },
+      { id:33, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P34",  name:"EXAMPLE P34",  summary:"EXAMPLE P34 – Price and description." },
+      { id:34, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P35",  name:"EXAMPLE P35",  summary:"EXAMPLE P35 – Price and description." },
+      { id:35, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P36",  name:"EXAMPLE P36",  summary:"EXAMPLE P36 – Price and description." },
+     { id:36, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P37",  name:"EXAMPLE P37",  summary:"price and description" },
+      { id:37, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P38",  name:"EXAMPLE P38",  summary:"price and description" },
+      { id:38, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P39",  name:"EXAMPLE P39",  summary:"price and description" },
+      { id:39, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P40",  name:"EXAMPLE P40",  summary:"price and description" },
+      { id:40, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P41",  name:"EXAMPLE P41",  summary:"price and description" },
+      { id:41, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P42",  name:"EXAMPLE P42",  summary:"price and description" },
+      { id:42, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P43",  name:"EXAMPLE P43",  summary:"price and description" },
+      { id:43, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P44",  name:"EXAMPLE P44",  summary:"price and description" },
+      { id:44, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P45",  name:"EXAMPLE P45",  summary:"price and description" },
+      { id:45, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P46",  name:"EXAMPLE P46",  summary:"price and description" },
+      { id:46, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P47",  name:"EXAMPLE P47",  summary:"price and description" },
+      { id:47, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P48",  name:"EXAMPLE P48",  summary:"price and description" },
+      { id:48, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P49",  name:"EXAMPLE P49",  summary:"price and description" },
+      { id:49, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P50",  name:"EXAMPLE P50",  summary:"price and description" },
+      { id:50, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P51",  name:"EXAMPLE P51",  summary:"price and description" },
+      { id:51, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P52",  name:"EXAMPLE P52",  summary:"price and description" },
+      { id:52, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P53",  name:"EXAMPLE P53",  summary:"price and description" },
+      { id:53, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P54",  name:"EXAMPLE P54",  summary:"price and description" },
+      { id:54, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P55",  name:"EXAMPLE P55",  summary:"price and description" },
+      { id:55, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P56",  name:"EXAMPLE P56",  summary:"price and description" },
+      { id:56, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P57",  name:"EXAMPLE P57",  summary:"price and description" },
+      { id:57, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P58",  name:"EXAMPLE P58",  summary:"price and description" },
+      { id:58, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P59",  name:"EXAMPLE P59",  summary:"price and description" },
+      { id:59, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P60",  name:"EXAMPLE P60",  summary:"price and description" },
+      { id:60, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P61",  name:"EXAMPLE P61",  summary:"price and description" },
+      { id:61, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P62",  name:"EXAMPLE P62",  summary:"price and description" },
+      { id:62, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P63",  name:"EXAMPLE P63",  summary:"price and description" },
+      { id:63, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P64",  name:"EXAMPLE P64",  summary:"price and description" },
+      { id:64, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P65",  name:"EXAMPLE P65",  summary:"price and description" },
+      { id:65, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P66",  name:"EXAMPLE P66",  summary:"price and description" },
+      { id:66, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P67",  name:"EXAMPLE P67",  summary:"price and description" },
+      { id:67, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P68",  name:"EXAMPLE P68",  summary:"price and description" },
+      { id:68, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P69",  name:"EXAMPLE P69",  summary:"price and description" },
+      { id:69, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P70",  name:"EXAMPLE P70",  summary:"price and description" },
+      { id:70, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P71",  name:"EXAMPLE P71",  summary:"price and description" },
+      { id:71, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P72",  name:"EXAMPLE P72",  summary:"price and description" },
+      { id:72, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P73",  name:"EXAMPLE P73",  summary:"price and description" },
+      { id:73, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P74",  name:"EXAMPLE P74",  summary:"price and description" },
+      { id:74, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P75",  name:"EXAMPLE P75",  summary:"price and description" },
+      { id:75, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P76",  name:"EXAMPLE P76",  summary:"price and description" },
+      { id:76, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P77",  name:"EXAMPLE P77",  summary:"price and description" },
+      { id:77, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P78",  name:"EXAMPLE P78",  summary:"price and description" },
+      { id:78, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P79",  name:"EXAMPLE P79",  summary:"price and description" },
+      { id:79, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P80",  name:"EXAMPLE P80",  summary:"price and description" },
+      { id:80, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P81",  name:"EXAMPLE P81",  summary:"price and description" },
+      { id:81, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P82",  name:"EXAMPLE P82",  summary:"price and description" },
+      { id:82, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P83",  name:"EXAMPLE P83",  summary:"price and description" },
+      { id:83, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P84",  name:"EXAMPLE P84",  summary:"price and description" },
+      { id:84, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P85",  name:"EXAMPLE P85",  summary:"price and description" },
+      { id:85, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P86",  name:"EXAMPLE P86",  summary:"price and description" },
+      { id:86, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P87",  name:"EXAMPLE P87",  summary:"price and description" },
+      { id:87, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P88",  name:"EXAMPLE P88",  summary:"price and description" },
+      { id:88, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P89",  name:"EXAMPLE P89",  summary:"price and description" },
+      { id:89, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P90",  name:"EXAMPLE P90",  summary:"price and description" },
+      { id:90, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P91",  name:"EXAMPLE P91",  summary:"price and description" },
+      { id:91, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P92",  name:"EXAMPLE P92",  summary:"price and description" },
+      { id:92, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P93",  name:"EXAMPLE P93",  summary:"price and description" },
+      { id:93, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P94",  name:"EXAMPLE P94",  summary:"price and description" },
+      { id:94, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P95",  name:"EXAMPLE P95",  summary:"price and description" },
+      { id:95, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P96",  name:"EXAMPLE P96",  summary:"price and description" },
+      { id:96, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P97",  name:"EXAMPLE P97",  summary:"price and description" },
+      { id:97, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P98",  name:"EXAMPLE P98",  summary:"price and description" },
+      { id:98, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P99",  name:"EXAMPLE P99",  summary:"price and description" },
+      { id:99, image:"https://placehold.co/600x600/1a1a1a/c9a84c?text=P100", name:"EXAMPLE P100", summary:"price and description" }
+          ];
     /* ════════════════════════════════════════════════════════
        END OF EDITABLE DATA
     ════════════════════════════════════════════════════════ */
 
+      /* ─── PAGINATION CONFIG ──────────────────────────────── */
+    const PER_PAGE   = 8;   // products shown per page (2 rows of 4 on desktop)
+    const TOTAL_PAGES = Math.ceil(products.length / PER_PAGE);
+    let   currentPage = 1;
 
     /* ─── STATE ─────────────────────────────────────────── */
     let cart           = [];
@@ -862,6 +987,83 @@
       document.getElementById('detail-name').textContent     = p.name;
       document.getElementById('detail-summary').textContent  = p.summary;
       showPage('product');
+    }
+
+       /* ─── RENDER GRID (current page only) ───────────────── */
+    function renderGrid(page) {
+      const start   = (page - 1) * PER_PAGE;
+      const slice   = products.slice(start, start + PER_PAGE);
+      const grid    = document.getElementById('products-grid');
+ 
+      grid.innerHTML = slice.map((p, i) => `
+        <div
+          class="product-card reveal"
+          onclick="showProduct(${p.id})"
+          style="transition-delay:${i * 0.06}s"
+        >
+          <div class="product-card-img-wrap">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+          </div>
+          <div class="product-card-info">
+            <div class="product-card-name">${p.name}</div>
+            <div class="product-card-tap">View Details</div>
+          </div>
+        </div>
+      `).join('');
+ 
+      // re-run reveal observer on freshly injected cards
+      initReveal();
+    }
+ 
+    /* ─── RENDER PAGINATION ─────────────────────────────── */
+    /* Algorithm: always show 1, always show last, show current ±2,
+       fill gaps ≥2 with "…", gaps of exactly 1 are just filled in. */
+    function renderPagination(page) {
+      const nav     = document.getElementById('pagination');
+      const total   = TOTAL_PAGES;
+ 
+      // Build the visible page numbers array
+      const visible = new Set();
+      visible.add(1);
+      visible.add(total);
+      for (let d = -2; d <= 2; d++) {
+        const n = page + d;
+        if (n >= 1 && n <= total) visible.add(n);
+      }
+      const sorted = [...visible].sort((a, b) => a - b);
+ 
+      // Build HTML
+      let html = '';
+ 
+      // ← Prev button
+      html += `<button class="pg-btn" onclick="goToPage(${page - 1})" ${page === 1 ? 'disabled' : ''} aria-label="Previous page">&#8592;</button>`;
+ 
+      sorted.forEach((n, idx) => {
+        // Insert ellipsis if there's a gap
+        if (idx > 0 && n - sorted[idx - 1] > 1) {
+          html += `<span class="pg-dots">…</span>`;
+        }
+        html += `<button
+          class="pg-btn${n === page ? ' active' : ''}"
+          onclick="goToPage(${n})"
+          aria-label="Page ${n}"
+          aria-current="${n === page ? 'page' : 'false'}"
+        >${n}</button>`;
+      });
+ 
+      // → Next button
+      html += `<button class="pg-btn" onclick="goToPage(${page + 1})" ${page === total ? 'disabled' : ''} aria-label="Next page">&#8594;</button>`;
+ 
+      nav.innerHTML = html;
+    }
+ 
+    function goToPage(page) {
+      if (page < 1 || page > TOTAL_PAGES) return;
+      currentPage = page;
+      renderGrid(page);
+      renderPagination(page);
+      // Scroll to products section smoothly
+      document.getElementById('products-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     /* ─── CART ──────────────────────────────────────────── */
